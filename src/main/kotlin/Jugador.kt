@@ -6,11 +6,13 @@ class Jugador(intentos: Int) {
 
     private val letrasUsada = mutableSetOf<Char>()
 
-    fun intentarLetra(letra: Char): Boolean{
+    fun intentarLetra(letra: Char?): Boolean{
         if (letra in letrasUsada) {
             return false
         } else {
-            letrasUsada.add(letra)
+            if (letra != null) {
+                letrasUsada.add(letra)
+            }
             return true
         }
     }

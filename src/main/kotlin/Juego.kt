@@ -8,7 +8,10 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
             println("Palabra: ${palabra.obtenerProgreso()} \n" +
             "Intentos restantes: ${jugador.intentos} \n" +
             "Letras usadads: ${jugador.obtenerLetrasUsadas()}")
-            val letra =
+            val letra = pedirLetra()
+            if (palabra.revelarLetra(letra)) {
+                println("¡Bien hecho! La letra '$letra' está en la palabra.")
+            }
 
 
 
@@ -20,7 +23,7 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
 
     }
 
-    fun pedirLetra(): Char{
+    fun pedirLetra(): Char?{
 
         var letra: Char?
             do {
@@ -34,5 +37,6 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
                 return letra
             }
         } while (!letraValida)
+        return letra
     }
 }

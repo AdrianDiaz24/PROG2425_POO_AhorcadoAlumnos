@@ -56,7 +56,7 @@ class Palabra(val palabraOculta: String) {
     }
 
 
-    fun revelarLetra(letra: Char): Boolean {
+    fun revelarLetra(letra: Char?): Boolean {
         var i = 0
         for (letraPalabra in palabraOculta) {
 
@@ -65,7 +65,7 @@ class Palabra(val palabraOculta: String) {
             }
             i++
         }
-        if (letra in palabraOculta){
+        if (letra!! in palabraOculta){
             return true
         } else {
             return false
