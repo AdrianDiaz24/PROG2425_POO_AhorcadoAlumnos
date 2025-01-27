@@ -6,6 +6,7 @@ fun main() {
 
     val palabras = mutableSetOf(Palabra("cúrcuma"))
 
+    'u'.quitarAcentos()
 
 
     var seguirJugando : Boolean
@@ -37,11 +38,9 @@ fun Char.quitarAcentos(): Char {
     */
 
     val tildes = mapOf('á' to 'a', 'é' to 'e', 'í' to 'i', 'ó' to 'o', 'ú' to 'u', 'Á' to 'A', 'É' to  'E', 'Í' to 'I', 'Ó' to 'O', 'Ú' to 'U')
-    var reemplazo = this
-    if (this in tildes){
-         reemplazo = tildes[this]!!
-    }
-    return reemplazo
+
+    return tildes[this] ?: this
+
 }
 
 

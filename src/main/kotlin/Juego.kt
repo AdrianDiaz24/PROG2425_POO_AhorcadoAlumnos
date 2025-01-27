@@ -8,14 +8,24 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
             println("Palabra: ${palabra.obtenerProgreso()} \n" +
             "Intentos restantes: ${jugador.intentos} \n" +
             "Letras usadads: ${jugador.obtenerLetrasUsadas()}")
-            val letra = pedirLetra()
-            if (palabra.revelarLetra(letra)) {
-                println("¡Bien hecho! La letra '$letra' está en la palabra.")
+
+            //val letra = pedirLetra()
+
+            val letra = readln().trim().lowercase().firstOrNull()
+
+            if (letra != null && jugador.intentarLetra(letra)) {
+                if (palabra.revelarLetra(letra)) {
+                    println("¡Bien hecho! La letra '$letra' está en la palabra.")
+                } else {
+                    println("La letra '$letra' no está en la palabra.")
+                    jugador.fallarIntento()
+                }
             } else {
-                println("La letra '$letra' no está en la palabra.")
-                jugador.fallarIntento()
+                println("Letra no valida o ya utilizada. Intentalo de nuevo")
             }
+
         } while (jugador.intentos > 0 || palabra.esCompleta())
+
         if (palabra.esCompleta()) {
             println("\n¡Felicidades! Has adivinado la palabra: ${palabra.obtenerProgreso()}")
         } else {
