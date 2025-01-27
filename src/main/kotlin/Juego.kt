@@ -24,7 +24,7 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
                 println("Letra no valida o ya utilizada. Intentalo de nuevo")
             }
 
-        } while (jugador.intentos > 0 || palabra.esCompleta())
+        } while (jugador.intentos > 0 && !palabra.esCompleta())
 
         if (palabra.esCompleta()) {
             println("\n¡Felicidades! Has adivinado la palabra: ${palabra.obtenerProgreso()}")

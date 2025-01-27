@@ -58,13 +58,12 @@ class Palabra(val palabraOculta: String) {
 
     fun revelarLetra(letra: Char): Boolean {
         var i = 0
-        val letraSinTilde = letra
         for (letraPalabra in palabraOculta) {
 
-            if (letraSinTilde.quitarAcentos() == letraPalabra.quitarAcentos()) {
-                if (letra == letraPalabra) {
-                    progreso[i] = letra
-                } else progreso[i]  = letra.quitarAcentos()
+            if (letra.quitarAcentos() == letraPalabra.quitarAcentos()) {
+                //if (letra == letraPalabra) {
+                    progreso[i] = letraPalabra
+                //} else progreso[i]  = letra.quitarAcentos()
             }
             i++
         }
