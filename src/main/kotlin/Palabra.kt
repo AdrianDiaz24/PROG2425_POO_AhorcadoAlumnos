@@ -84,7 +84,10 @@ class Palabra(val palabraOculta: String) {
     }
 
     fun esCompleta(): Boolean{
-        if ('_' in progreso) {
+
+        // if('_' in progreso)
+
+        if (!progreso.all { it.isLetter() }) {
             return false
         } else {
             return true
