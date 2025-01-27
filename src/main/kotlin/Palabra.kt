@@ -10,7 +10,7 @@ import kotlinx.coroutines.runBlocking
 
 
 class Palabra(val palabraOculta: String) {
-    private val progreso: Array<String> = Array(palabraOculta.length){"_"}
+    private val progreso: Array<Char> = Array(palabraOculta.length){'_'}
 
     companion object{
         fun generarPalabras(cantidad: Int, tamanioMin: Int, tamanioMax: Int, idioma: Idioma = Idioma.ES): MutableSet<Palabra> {
@@ -61,7 +61,7 @@ class Palabra(val palabraOculta: String) {
         for (letraPalabra in palabraOculta) {
 
             if (letra == letraPalabra) {
-                progreso[i].replace('_', letra)
+                progreso[i] = letra
             }
             i++
         }
@@ -81,7 +81,7 @@ class Palabra(val palabraOculta: String) {
     }
 
     fun esCompleta(): Boolean{
-        if ("_" in progreso) {
+        if ('_' in progreso) {
             return false
         } else {
             return true

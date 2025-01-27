@@ -2,13 +2,17 @@ package es.iesra.prog2425_ahorcado
 
 fun main() {
 
-    val palabras = Palabra.generarPalabras(cantidad = 10, tamanioMin = 7, tamanioMax = 7, idioma = Idioma.ES)
+    //val palabras = Palabra.generarPalabras(cantidad = 10, tamanioMin = 7, tamanioMax = 7, idioma = Idioma.ES)
+
+    val palabras = mutableSetOf(Palabra("cúrcuma"))
+
+
 
     var seguirJugando : Boolean
     do {
         val palabraOculta = palabras.pop()
         if (palabraOculta != null) {
-            val jugador = Jugador(intentosMaximos = 6)
+            val jugador = Jugador(intentos = 6)
             val juego = Juego(palabraOculta, jugador)
 
             juego.iniciar()
@@ -31,7 +35,15 @@ fun Char.quitarAcentos(): Char {
     sobre el cual la función de extensión será llamada. Dentro de la función de extensión, puedes acceder
     a las propiedades y métodos de esta instancia utilizando this.
     */
+
+    val tildes = mapOf('á' to 'a', 'é' to 'e', 'í' to 'i', 'ó' to 'o', 'ú' to 'u', 'Á' to 'A', 'É' to  'E', 'Í' to 'I', 'Ó' to 'O', 'Ú' to 'U')
+    var reemplazo = this
+    if (this in tildes){
+         reemplazo = tildes[this]!!
+    }
+    return reemplazo
 }
+
 
 /**
  * Elimina y retorna un elemento aleatorio de este [MutableSet].

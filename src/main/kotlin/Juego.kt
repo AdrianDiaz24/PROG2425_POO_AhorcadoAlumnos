@@ -11,16 +11,16 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
             val letra = pedirLetra()
             if (palabra.revelarLetra(letra)) {
                 println("¡Bien hecho! La letra '$letra' está en la palabra.")
+            } else {
+                println("La letra '$letra' no está en la palabra.")
+                jugador.fallarIntento()
             }
-
-
-
-
-
         } while (jugador.intentos > 0 || palabra.esCompleta())
-
-
-
+        if (palabra.esCompleta()) {
+            println("\n¡Felicidades! Has adivinado la palabra: ${palabra.obtenerProgreso()}")
+        } else {
+            println("\nLo siento, te has quedado sin intentos. La palabra era: ${palabra.palabraOculta}")
+        }
     }
 
     fun pedirLetra(): Char?{
@@ -38,5 +38,17 @@ class Juego(val palabra: Palabra, val jugador: Jugador) {
             }
         } while (!letraValida)
         return letra
+    }
+
+    fun preguntar(msj: String): Boolean {
+        do {
+            print("$msj (s/n): ")
+            val respuesta = readln().trim().lowercase()
+            when (respuesta) {
+                "s" -> return true
+                "n" -> return false
+                else -> println("Respuesta no válida! Inténtelo de nuevo...")
+            }
+        } while (true)
     }
 }
