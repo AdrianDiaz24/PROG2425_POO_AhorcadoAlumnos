@@ -68,7 +68,7 @@ class Palabra(val palabraOculta: String) {
             }
             i++
         }
-        if (letra!! in palabraOculta){
+        if (letra in palabraOculta){
             return true
         } else {
             return false
